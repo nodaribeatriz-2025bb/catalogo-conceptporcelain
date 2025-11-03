@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Catálogo | Concept Porcelain — Áreas Gourmet de Alto Padrão</title>
+  <meta name="description" content="Catálogo Concept Porcelain: churrasqueiras, fornos e fogões a lenha sob medida. Revestimentos de alto padrão, acabamentos finos e parcelamento em até 18x. Bauru e região." />
+  <link rel="icon" href="logo.png">
+
+  <style>
+    :root{
+      --bg:#0f0f10;
+      --card:#151518;
+      --text:#f5f7f9;
+      --muted:#cfd3d7;
+      --gold:#d4af37;
+      --wa:#009739;
+      --radius:16px;
+      --shadow:0 10px 24px rgba(0,0,0,.25);
+      --container:980px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+
+    /* HEADER com logo (sem menu) */
+    header{
+      position:sticky; top:0; z-index:10;
+      background:rgba(15,15,16,.92);
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .wrap{max-width:var(--container); margin:0 auto; padding:0 20px;}
+    .header-row{display:flex; align-items:center; justify-content:center; min-height:76px;}
+    .brand img{height:4cm; width:auto; display:block; padding:8px 0;}
+
+    /* intro */
+    .intro{padding:22px 0 10px;}
+    .intro h1{margin:0 0 8px; font-size:26px; color:var(--gold); text-align:center;}
+    .intro p{margin:0 auto; color:var(--muted); text-align:center; max-width:850px;}
+
+    /* lista do catálogo (cards verticais) */
+    .catalog{display:grid; gap:18px; margin:22px 0 34px;}
+    .item{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .item-media{
+      width:100%;
+      aspect-ratio: 3/2;
+      background:#0b0b0c;
+    }
+    .item-media img{
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+    .item-body{padding:16px 16px 18px;}
+    .item-title{margin:0 0 6px; font-size:18px; font-weight:800;}
+    .item-desc{margin:0 0 10px; color:var(--muted)}
+    .item-price{margin:2px 0 0; font-weight:800; color:var(--gold); font-size:20px}
+    .item-note{margin:2px 0 0; font-size:13px; color:var(--muted)}
+
+    /* CTA WhatsApp */
+    .cta{display:flex; justify-content:center;}
+    .btn{
+      appearance:none; border:0; cursor:pointer; text-decoration:none;
+      padding:16px 22px; border-radius:12px; font-weight:800; font-size:17px;
+      background:var(--wa); color:#fff; min-width:280px; text-align:center;
+      box-shadow:var(--shadow); transition:.2s transform ease,.2s filter ease,.2s background ease;
+    }
+    .btn:hover{transform:translateY(-1px); filter:brightness(1.05)}
+    .btn:active{transform:translateY(0)}
+
+    footer{color:#bfc4c9; text-align:center; font-size:14px; padding:26px 0 36px;}
+
+    /* Mobile */
+    @media (max-width:560px){
+      .brand img{height:3.2cm}
+      .intro h1{font-size:22px}
+      .item-price{font-size:19px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header apenas com logo -->
+  <header>
+    <div class="wrap">
+      <div class="header-row">
+        <a class="brand" href="#"><img src="logo.png" alt="Concept Porcelain"></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Intro -->
+    <section class="intro">
+      <h1>Catálogo Concept Porcelain</h1>
+      <p>
+        Somos a <strong>Concept Porcelain</strong>. Atuamos em <strong>Bauru e região</strong> com
+        <strong>churrasqueiras, fornos e fogões a lenha planejados</strong>, alto padrão de execução e
+        <strong>acabamentos finos e elegantes</strong>. Parcelamos em <strong>até 18x no cartão de crédito</strong>.
+      </p>
+    </section>
+
+    <!-- Lista de Itens -->
+    <section class="catalog">
+
+      <!-- 1 -->
+      <article class="item">
+        <div class="item-media">
+          <img src="catalogo1.jpg" alt="Churrasqueira em tijolinho com granito" loading="lazy">
+        </div>
+        <div class="item-body">
+          <h3 class="item-title">Churrasqueira tijolinho + granito</h3>
+          <p class="item-desc">Estrutura em alvenaria, revestimento tijolinho aparente, prateleira em granito e dutos dimensionados para melhor exaustão.</p>
+          <p class="item-price">Preço aproximado: R$ 9.800</p>
+          <p class="item-note">Valores variam conforme medidas, materiais e acabamentos.</p>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="item">
+        <div class="item-media">
+          <img src="catalogo2.jpg" alt="Conjunto fogão a lenha com forno" loading="lazy">
+        </div>
+        <div class="item-body">
+          <h3 class="item-title">Fogão a lenha + forno</h3>
+          <p class="item-desc">Conjunto integrado com tampa de ferro, forno com porta de vidro e base reforçada. Ideal para área gourmet completa.</p>
+          <p class="item-price">Preço aproximado: R$ 12.500</p>
+          <p class="item-note">Personalizamos layout, nichos e pedras.</p>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="item">
+        <div class="item-media">
+          <img src="catalogo3.jpg" alt="Ilha gourmet revestida em porcelanato madeira" loading="lazy">
+        </div>
+        <div class="item-body">
+          <h3 class="item-title">Ilha gourmet porcelanato madeira</h3>
+          <p class="item-desc">Revestimento premium tipo madeira, tampos em granito e recortes para cooktop a lenha. Estética moderna e durável.</p>
+          <p class="item-price">Preço aproximado: R$ 15.900</p>
+          <p class="item-note">Cores e padrões sob consulta.</p>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="item">
+        <div class="item-media">
+          <img src="catalogo4.jpg" alt="Fogão a lenha com detalhes em ladrilho" loading="lazy">
+        </div>
+        <div class="item-body">
+          <h3 class="item-title">Fogão a lenha com ladrilhos</h3>
+          <p class="item-desc">Design com faixas de ladrilho hidráulico e base ampliada para apoio. Combina tradição e personalidade.</p>
+          <p class="item-price">Preço aproximado: R$ 11.700</p>
+          <p class="item-note">Opções de cores e desenhos.</p>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="item">
+        <div class="item-media">
+          <img src="catalogo5.jpg" alt="Chaminé externa em tijolo maciço" loading="lazy">
+        </div>
+        <div class="item-body">
+          <h3 class="item-title">Chaminé externa tijolo maciço</h3>
+          <p class="item-desc">Execução técnica para exaustão adequada, capa superior e acabamento resistente às intempéries.</p>
+          <p class="item-price">Preço aproximado: R$ 6.900</p>
+          <p class="item-note">Inclui dimensionamento da saída.</p>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="item">
+        <div class="item-media">
+          <img src="catalogo6.jpg" alt="Churrasqueira com bordas arredondadas" loading="lazy">
+        </div>
+        <div class="item-body">
+          <h3 class="item-title">Churrasqueira bordas arredondadas</h3>
+          <p class="item-desc">Visual robusto, cantos boleados, grelhas deslizantes e prateleira em pedra natural.</p>
+          <p class="item-price">Preço aproximado: R$ 10.900</p>
+          <p class="item-note">Compatível com parrilla ou bafo.</p>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="item">
+        <div class="item-media">
+          <img src="catalogo7.jpg" alt="Fogão a lenha com duas abóbadas" loading="lazy">
+        </div>
+        <div class="item-body">
+          <h3 class="item-title">Fogão a lenha — dupla abóbada</h3>
+          <p class="item-desc">Base com dois arcos, tampo em granito e nichos de apoio. Clássico e funcional.</p>
+          <p class="item-price">Preço aproximado: R$ 9.600</p>
+          <p class="item-note">Portas e puxadores personalizáveis.</p>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="item">
+        <div class="item-media">
+          <img src="catalogo8.jpg" alt="Churrasqueira slim de embutir" loading="lazy">
+        </div>
+        <div class="item-body">
+          <h3 class="item-title">Churrasqueira slim de embutir</h3>
+          <p class="item-desc">Modelo compacto para espaços reduzidos, mantendo a eficiência e o acabamento premium.</p>
+          <p class="item-price">Preço aproximado: R$ 7.800</p>
+          <p class="item-note">Ideal para varandas menores.</p>
+        </div>
+      </article>
+
+      <!-- 9 -->
+      <article class="item">
+        <div class="item-media">
+          <img src="catalogo9.jpg" alt="Conjunto branco com forno e grelha" loading="lazy">
+        </div>
+        <div class="item-body">
+          <h3 class="item-title">Conjunto branco com forno</h3>
+          <p class="item-desc">Acabamento claro sofisticado, grelha com níveis e forno com porta trabalhada.</p>
+          <p class="item-price">Preço aproximado: R$ 14.400</p>
+          <p class="item-note">Acabamentos finos sob medida.</p>
+        </div>
+      </article>
+
+      <!-- 10 -->
+      <article class="item">
+        <div class="item-media">
+          <img src="catalogo10.jpg" alt="Churrasqueira básica pronta para receber revestimento" loading="lazy">
+        </div>
+        <div class="item-body">
+          <h3 class="item-title">Churrasqueira — base pronta</h3>
+          <p class="item-desc">Estrutura executada e preparada para receber o revestimento de sua preferência.</p>
+          <p class="item-price">Preço aproximado: R$ 6.200</p>
+          <p class="item-note">Escolha porcelanatos, pedras ou tijolinho.</p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- CTA final -->
+    <section class="cta" aria-label="Contato por WhatsApp">
+      <a class="btn" href="https://wa.me/5514998605741?text=Oi%20J%C3%BAlio%2C%20vi%20o%20cat%C3%A1logo%20e%20quero%20um%20or%C3%A7amento" target="_blank" rel="noopener">
+        💬 Falar no WhatsApp
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Concept Porcelain • Catálogo — Bauru e Região
+  </footer>
+</body>
+</html>
