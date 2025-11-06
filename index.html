@@ -272,6 +272,142 @@
         <p class="item-price">Preço médio: R$ 10.000,00</p>
         <p class="item-note">Inclui material e mão de obra.</p>
       </div>
+      <!-- ===== SIMULADOR DE PARCELAS (cole a partir daqui) ===== -->
+<section id="simulador" class="wrap simulador">
+  <h2>Simule aqui seu parcelamento</h2>
+
+  <div class="sim-form">
+    <label for="simValor">Valor da compra (R$)</label>
+    <input id="simValor" type="text" inputmode="decimal" placeholder="Ex.: 12.500,00">
+    <button id="simCalcular" class="btn-calc">Calcular</button>
+  </div>
+
+  <div id="simResultado" class="sim-out" style="display:none;">
+    <div class="legend">
+      <span><b>1×–6×:</b> sem juros</span>
+      <span><b>7×–18×:</b> com taxa total do plano</span>
+    </div>
+    <div class="tbl">
+      <div class="hdr">
+        <div>Parcelas</div>
+        <div>Parcela (R$)</div>
+        <div>Total (R$)</div>
+        <div>Juros</div>
+      </div>
+      <div id="simRows"></div>
+    </div>
+    <p class="obs">* As taxas de 7× a 18× seguem sua tabela Visa/Master (taxa total do plano).</p>
+  </div>
+</section>
+
+<style>
+  /* ===== estilos do simulador (usa sua paleta) ===== */
+  .simulador{
+    background: var(--card); border:1px solid rgba(255,255,255,.06);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 18px; margin: 26px 0 34px;
+  }
+  .simulador h2{ color:var(--gold); margin:0 0 12px; text-align:center; font-size:22px; }
+
+  .sim-form{ display:grid; grid-template-columns: 1fr auto; gap:12px; align-items:end; }
+  .sim-form label{ color:var(--muted); font-size:14px; margin-bottom:6px; display:block; }
+  .sim-form input{
+    background: rgba(255,255,255,.06); color:var(--text);
+    border:1px solid rgba(255,255,255,.12); border-radius:10px; padding:12px 10px;
+    outline:none; width:100%;
+  }
+  .btn-calc{
+    background: var(--wa); color:#fff; border:0; padding:14px 18px;
+    border-radius:10px; font-weight:800; cursor:pointer; box-shadow:var(--shadow);
+    transition:.2s transform ease,.2s filter ease;
+  }
+  .btn-calc:hover{ transform:translateY(-1px); filter:brightness(1.05); }
+
+  .legend{ display:flex; gap:14px; color:var(--muted); font-size:13px; margin:14px 0 8px; flex-wrap:wrap; }
+  .tbl{ border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; }
+  .tbl .hdr, .tbl .row{
+    display:grid; grid-template-columns: 120px 1fr 1fr 120px; gap:0; align-items:center;
+  }
+  .tbl .hdr{ background:rgba(255,255,255,.05); font-weight:800; color:#e8eaed; }
+  .tbl .hdr > div, .tbl .row > div{ padding:10px 12px; border-bottom:1px solid rgba(255,255,255,.06); }
+  .tbl .row:nth-child(even){ background: rgba(255,255,255,.03); }
+  .tbl .row .juros{ color: var(--gold); font-weight:800; }
+  .obs{ color:var(--muted); font-size:12px; margin:10px 2px 0; }
+
+  @media (max-width:720px){
+    .sim-form{ grid-template-columns: 1fr; }
+    .tbl .hdr, .tbl .row{ grid-template-columns: 90px 1fr 1fr 90px; }
+  }
+</style>
+
+<script>
+  // ===== CONFIG: Tabela de taxas totais (segundo a imagem) =====
+  // 1x a 6x = 0% (sem juros). A partir de 7x, taxa TOTAL do plano (% sobre o valor à vista).
+  const TAXA_TOTAL = {
+    1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0,
+    7: 7.67, 8: 8.33, 9: 8.98, 10: 9.63,
+    11: 10.26, 12: 10.90, 13: 12.32, 14: 12.94,
+    15: 13.56, 16: 14.17, 17: 14.77, 18: 15.37
+  };
+  // (se um dia quiser usar 1x com 2,99% ou 2x–6x com taxa, é só alterar acima)
+
+  // ===== utilidades de moeda =====
+  const fmtBRL = new Intl.NumberFormat('pt-BR',{ style:'currency', currency:'BRL' });
+  function parseBRL(str){
+    if(!str) return 0;
+    str = String(str).replace(/[^\d,.-]/g,'').replace(/\./g,'').replace(',', '.');
+    const v = parseFloat(str);
+    return isNaN(v) ? 0 : v;
+  }
+
+  // ===== cálculo das linhas 1x..18x =====
+  function calcularTabela(valor){
+    const rows = [];
+    for(let n=1;n<=18;n++){
+      const taxa = TAXA_TOTAL[n] ?? 0;          // % total do plano
+      const fator = 1 + (taxa/100);             // multiplicador
+      const total = (n <= 6) ? valor : valor * fator; // 1–6 sem juros
+      const parcela = total / n;
+      const juros = total - valor;
+
+      rows.push({
+        n,
+        parcela: fmtBRL.format(parcela),
+        total: fmtBRL.format(total),
+        juros: (juros<=0.005) ? '—' : `+${fmtBRL.format(juros)}`
+      });
+    }
+    return rows;
+  }
+
+  // ===== interação =====
+  const $valor = document.getElementById('simValor');
+  const $btn   = document.getElementById('simCalcular');
+  const $wrap  = document.getElementById('simResultado');
+  const $rows  = document.getElementById('simRows');
+
+  $btn.addEventListener('click', ()=>{
+    const v = parseBRL($valor.value);
+    if(!v || v <= 0){ alert('Informe um valor válido.'); $valor.focus(); return; }
+
+    const data = calcularTabela(v);
+    $rows.innerHTML = data.map(r => `
+      <div class="row">
+        <div>${r.n}×</div>
+        <div>${r.parcela}</div>
+        <div>${r.total}</div>
+        <div class="juros">${r.juros}</div>
+      </div>
+    `).join('');
+
+    $wrap.style.display = 'block';
+
+    // formata o input como BRL após calcular
+    $valor.value = fmtBRL.format(v);
+  });
+</script>
+<!-- ===== FIM do simulador ===== -->
+
     </article>
 
   </section>
