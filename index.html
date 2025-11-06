@@ -19,17 +19,19 @@
       --radius:16px;
       --shadow:0 10px 28px rgba(0,0,0,.32);
       --container:980px;
-    }
-    *{box-sizing:border-box}
-
-    html,body{
-      margin:0;
-      font:16px/1.6 system-ui,Segoe UI,Roboto,Arial;
-      color:var(--text);
-      background:
-        linear-gradient(rgba(0,0,0,.94),rgba(0,0,0,.94)),
-        url('fogo.png') center/cover fixed no-repeat;
-    }
+  html, body {
+  margin: 0;
+  padding: 0;
+  background:
+    linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
+    url('fogo.png');
+  background-size: cover;          /* cobre toda a tela */
+  background-repeat: no-repeat;    /* não repete */
+  background-attachment: fixed;    /* fundo fixo elegante */
+  background-position: center;     /* centraliza o fogo */
+  color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
 
     /* Header */
     header{
@@ -241,7 +243,7 @@
 
     <!-- 8 -->
     <article class="item">
-      <div class="item-media"><img src="catalogo8.png" alt=""></div>
+      <div class="item-media"><img src="catalogo88.png" alt=""></div>
       <div class="item-body">
         <h3 class="item-title">Forno e Fogão personalizados</h3>
         <p class="item-desc">Modelo moderno com revestimento à escolha do cliente.</p>
@@ -252,7 +254,7 @@
 
     <!-- 9 -->
     <article class="item">
-      <div class="item-media"><img src="catalogo9.png" alt=""></div>
+      <div class="item-media"><img src="catalogo99.png" alt=""></div>
       <div class="item-body">
         <h3 class="item-title">2×1 Churrasqueira e Forno</h3>
         <p class="item-desc">Estrutura clássica em tijolinho à vista.</p>
